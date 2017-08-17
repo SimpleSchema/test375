@@ -1,0 +1,45 @@
+<body>
+  {{> myForm}}
+</body>
+
+
+
+
+
+<template name="myForm">
+    <form>
+        <button id="button">lmao click me lol!</button>
+    </form>
+</template>
+
+
+<template name="SongsTable">
+  <div class="container">
+    <!-- {{> reactiveTable collection=weapons fields=fields settings=settings}}
+    {{> reactiveTable collection=Weapons}}-->
+
+    <h2>Playlist</h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Song Title</th>
+          <th>Artist</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+          {{#each songs}}
+          <tr>
+          <td>{{song_name}}</td>
+          <td>{{artist}}</td>
+          <td>{{Action}}</td>
+          <button type="button" class="btn btn-danger btn-sm">
+                <span class="glyphicon glyphicon-remove-sign"></span> Remove
+                </button>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+</template>
