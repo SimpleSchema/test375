@@ -16,16 +16,22 @@ Template.SongsTable.onCreated(function () {
 
 
 Template.admin.events({
-    'click .submitSong': function(){
+    'submit .InsertSongForm': function(event){
       event.preventDefault();
 
-         console.log("lmfao!!!!");
+      const target = event.target;
+      const song = target.song.value;
+      const artist = target.artist.value;
+
+      console.log("song: " + song);
+      console.log("artist: " + artist);
+
+
+      //clear form
+      target.title.value = '';
+      target.message.value = '';
    }
-
-//Meteor.call('addSong');
-
 });
-
 
 Template.SongsTable.events({
   'click button': function() {
