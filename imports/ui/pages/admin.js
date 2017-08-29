@@ -1,28 +1,28 @@
+import './admin.html';
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { Template } from 'meteor/templating';
 import { Songs } from '../../collections/songs.js';
-import SimpleSchema from 'simpl-schema';
-import './admin.html';
 
 
 Template.SongsTable.onCreated(function () {
   this.autorun(() => {
-    Meteor.subscribe("SongsPub", "myForm");
+    Meteor.subscribe("SongsPub");
+    console.log("Test ayyyyyyyyy!");
 
     });
 });
 
 
 
-Template.myForm.events({
-    'click button#': function(){
+Template.admin.events({
+    'click .submitSong': function(){
       event.preventDefault();
 
          console.log("lmfao!!!!");
    }
 
-Meteor.call('addSong');
+//Meteor.call('addSong');
 
 });
 
@@ -30,10 +30,11 @@ Meteor.call('addSong');
 Template.SongsTable.events({
   'click button': function() {
     event.preventDefault();
+    console.log("Test ayyyyyyyyy!");
 
     var songId = this._id;
 
-    Meteor.call('removeSong', songId);
+    //Meteor.call('removeSong', songId);
 
   }
 });

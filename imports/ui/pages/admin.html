@@ -1,15 +1,19 @@
-<body>
-  {{> myForm}}
-</body>
+<template name="admin">
+    <div class="col-xs-4">
+      <div class="row">
+        <form class="InsertSongForm">
+          <div class="form-group">
+            <label for="song">Song</label>
+            <input type="text" name="song" class="form-control" id="song">
+          </div>
+          <br>
+          <button type="submit" class="btn btn-success submitSong">Submit</button>
+        </form>
+      </div>
+    </div>
 
+    {{> SongsTable}}
 
-
-
-
-<template name="myForm">
-    <form>
-        <button id="button">lmao click me lol!</button>
-    </form>
 </template>
 
 
