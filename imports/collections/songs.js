@@ -13,12 +13,16 @@ Songs.schema = new SimpleSchema({
   artist_name: {
     type: String,
     optional: true
-  },
+  }
+
+
 });
 
 const song = {
   song_name: 'Stairway To Heaven',
-  artist_name: 'Led Zeppelin'
+  artist_name: 'Led Zeppelin',
+
+
 };
 
 Songs.schema.validate(song);

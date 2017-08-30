@@ -29,11 +29,15 @@ Meteor.methods({
       artist_name: artistName
     });
 },
-  removeSong(SongId) {
+
+  removeSong(songId) {
+
     check(songId, String);
 
       Songs.remove({
         _id: songId
       });
-    }
+    },
+
+
 });

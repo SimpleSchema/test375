@@ -4,6 +4,8 @@
       <div class="row">
         <form class="InsertSongForm">
 
+          <h4>Playlist Adjustment</h4>
+
           <div class="form-group">
             <label for="song">Song</label>
             <input type="text" name="song" class="form-control">
@@ -15,7 +17,7 @@
           </div>
 
           <br>
-            <button id="submitSong" class="btn btn-success">Submit</button>
+            <button id="InsertSongForm" class="btn btn-success">Submit</button>
         </form>
       </div>
     </div>
@@ -23,7 +25,36 @@
 
     <br>
 
+  <div class="container">
+    <div class="col-xs-4">
+
+    <form class="InsertSongTopTen">
+
+      <h4>Tope Ten Adjustment</h4>
+
+      <div class="form-group">
+        <label for="song_name">Song</label>
+        <input type="text" name="song" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="artist_name">Artist</label>
+        <input type="text" name="artist" class="form-control">
+      </div>
+
+      <br>
+        <button id="InsertSongTopTen" class="btn btn-success">Submit</button>
+
+    </form>
+    </div>
+  </div>
+    <br>
+
     {{> SongsTable}}
+
+    <br>
+
+    {{> topTenTable}}
 
 </template>
 
@@ -40,17 +71,54 @@
           <th>Song Title</th>
           <th>Artist</th>
           <th>Action</th>
+
         </tr>
         </thead>
         <tbody>
           {{#each songs}}
           <tr>
           <td>{{song_name}}</td>
-          <td>{{artist}}</td>
-          <td>{{Action}}</td>
+          <td>{{artist_name}}</td>
+
+
+
           <button type="button" class="btn btn-danger btn-sm">
-                <span class="glyphicon glyphicon-remove-sign"></span> Remove
-                </button>
+          <span class="glyphicon glyphicon-remove-sign"></span> Remove
+          </button>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+</template>
+
+<template name="topTenTable">
+  <div class="container">
+    <!-- {{> reactiveTable collection=weapons fields=fields settings=settings}}
+    {{> reactiveTable collection=Weapons}}-->
+
+    <h2>Top Ten Songs Of The Week</h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Song Title</th>
+          <th>Artist</th>
+          <th>Action</th>
+
+        </tr>
+        </thead>
+        <tbody>
+          {{#each songs}}
+          <tr>
+          <td>{{song_name}}</td>
+          <td>{{artist_name}}</td>
+
+
+
+          <button type="button" class="btn btn-danger btn-sm">
+          <span class="glyphicon glyphicon-remove-sign"></span> Remove
+          </button>
           </tr>
           {{/each}}
         </tbody>

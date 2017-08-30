@@ -8,7 +8,7 @@ import { Songs } from '../../collections/songs.js';
 Template.SongsTable.onCreated(function () {
   this.autorun(() => {
     Meteor.subscribe("SongsPub");
-    console.log("Test ayyyyyyyyy!");
+
 
     });
 });
@@ -23,29 +23,53 @@ Template.admin.events({
       const song = target.song.value;
       const artist = target.artist.value;
 
-      console.log("song: " + song);
-      console.log("artist: " + artist);
+    Meteor.call("addSong", song, artist );
 
 
       //clear form
-      target.title.value = '';
-      target.message.value = '';
+      target.song.value = '';
+      target.artist.value = '';
    }
 });
 
-Template.SongsTable.events({
+Template.admin.events({
+    'submit .InsertSongTopTen': function(event){
+      event.preventDefault();
+
+      const target = event.target;
+      const song = target.song.value;
+      const artist = target.artist.value;
+
+    Meteor.call("addSong", song, artist );
+
+
+      //clear form
+      target.song.value = '';
+      target.artist.value = '';
+   }
+});
+
+
+
+Template.admin.events({
   'click button': function() {
     event.preventDefault();
-    console.log("Test ayyyyyyyyy!");
+
 
     var songId = this._id;
 
-    //Meteor.call('removeSong', songId);
+    Meteor.call('removeSong', songId);
 
   }
 });
 
 Template.SongsTable.helpers({
+    songs: function () {
+        return Songs.find({});
+    },
+});
+
+Template.topTenTable.helpers({
     songs: function () {
         return Songs.find({});
     },

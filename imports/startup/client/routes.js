@@ -4,7 +4,7 @@ import { Songs } from '../../collections/songs.js';
 
 import '../../ui/pages/admin.html';
 import '../../ui/pages/home.html';
-
+import '../../ui/navigation/navigation.html';
 
 FlowRouter.route('/', {
   action: function() {

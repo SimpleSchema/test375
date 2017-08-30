@@ -7,16 +7,30 @@ import { Songs } from '../../collections/songs.js';
 
 
 
+
 Template.songsTable.onCreated(function () {
   this.autorun(() => {
-    console.log("Test ayyyyyyyyy!");
-    Meteor.subscribe("SongsPub", "myForm");
+
+    Meteor.subscribe("SongsPub");
     });
+});
+
+Template.songsTable.helpers({
+  songs: function() {
+    return Songs.find({});
+  }
+});
+
+
+Template.TopTenTable.helpers({
+  songs: function() {
+    return Songs.find({});
+  }
 });
 
 Template.home.onCreated(function () {
   this.autorun(() => {
-    console.log("Test ayyyyyyyyy!");
-    Meteor.subscribe("SongsPub", "myForm");
+
+    Meteor.subscribe("SongsPub" );
     });
 });

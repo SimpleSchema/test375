@@ -1,11 +1,64 @@
 <template name="home">
   {{> songsTable}}
+  <br>
+  {{> TopTenTable}}
 </template>
+
+
 
 <template name="songsTable">
   <div class= "container">
     <div class="row">
       <h1>SONGIFY</h1>
     </div>
-  </div>
+    <table class="table">
+        <thead>
+          <tr>
+          <th>Song name</th>
+          <th>Artist</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each songs}}
+        <tr>
+          <td>{{song_name}}</td>
+          <td>{{artist_name}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    </div>
+
+</template>
+
+
+
+
+
+<template name="TopTenTable">
+  <div class= "container">
+    <div class="row">
+      <h1>Top Ten Songs Of The Week</h1>
+    </div>
+    <table class="table">
+        <thead>
+          <tr>
+          <th>Song name</th>
+          <th>Artist</th>
+          <th>Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each songs}}
+        <tr>
+          <td>{{song_name}}</td>
+          <td>{{artist_name}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    </div>
+
 </template>
