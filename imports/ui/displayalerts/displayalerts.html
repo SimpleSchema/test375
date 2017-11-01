@@ -1,0 +1,33 @@
+<template name="displayAlerts">
+    {{#each checkAlerts}}
+        <div name="row">
+            <div class="col-lg-12">
+                <div class="text-center">
+                    {{#if alertWarning}}
+                      <div class="alert alert-warning alert-dismissable">
+                          <button aria-hidden="true" class="close removeAlert" type="button">×</button><p> {{message}} </p>
+                      </div>
+                    {{/if}}
+
+                    {{#if alertInfo}}
+                      <div class="alert alert-info alert-dismissable">
+                          <button aria-hidden="true" class="close removeAlert" type="button">×</button><p> {{message}} </p>
+                      </div>
+                    {{/if}}
+
+                    {{#if alertSuccess}}
+                      <div class="alert alert-success alert-dismissable">
+                          <button aria-hidden="true" class="close removeAlert" type="button">×</button><p> {{message}} </p>
+                      </div>
+                    {{/if}}
+
+                    {{#if alertDanger}}
+                      <div class="alert alert-danger alert-dismissable">
+                          <button aria-hidden="true" class="close removeAlert" type="button">×</button><p> {{message}} </p>
+                      </div>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</template>

@@ -7,6 +7,12 @@
           <h4>Playlist Adjustment</h4>
 
           <div class="form-group">
+            <label for= "rank">Rank</label>
+            <input type="text" name="rank" class="form-control">
+          </div>
+
+
+          <div class="form-group">
             <label for="song">Song</label>
             <input type="text" name="song" class="form-control">
           </div>
@@ -15,6 +21,25 @@
             <label for="artist">Artist</label>
             <input type="text" name="artist" class="form-control">
           </div>
+
+          <div class="form-group">
+            <label for= "release_date">Release Date</label>
+            <input type="text" name="release_date" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for= "album">Album</label>
+            <input type="text" name="album" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for= "youtube">Link</label>
+            <input type="text" name="youtube" class="form-control">
+          </div>
+
+
+
+
 
           <br>
             <button id="InsertSongForm" class="btn btn-success">Submit</button>
@@ -25,36 +50,9 @@
 
     <br>
 
-  <div class="container">
-    <div class="col-xs-4">
-
-    <form class="InsertSongTopTen">
-
-      <h4>Tope Ten Adjustment</h4>
-
-      <div class="form-group">
-        <label for="song_name">Song</label>
-        <input type="text" name="song" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label for="artist_name">Artist</label>
-        <input type="text" name="artist" class="form-control">
-      </div>
-
-      <br>
-        <button id="InsertSongTopTen" class="btn btn-success">Submit</button>
-
-    </form>
-    </div>
-  </div>
-    <br>
-
     {{> SongsTable}}
 
-    <br>
 
-    {{> topTenTable}}
 
 </template>
 
@@ -68,8 +66,11 @@
     <table class="table">
       <thead>
         <tr>
+          <th>Rank</th>
           <th>Song Title</th>
           <th>Artist</th>
+          <th>Release Date</th>
+          <th>Album</th>
           <th>Action</th>
 
         </tr>
@@ -77,47 +78,22 @@
         <tbody>
           {{#each songs}}
           <tr>
-          <td>{{song_name}}</td>
+          <td>{{song_rank}}</td>
+          <td><a href="{{youtube}}"> {{song_name}}</a></td>
           <td>{{artist_name}}</td>
+          <td>{{release_date}}</td>
+          <td>{{album}}</td>
 
 
 
-          <button type="button" class="btn btn-danger btn-sm">
-          <span class="glyphicon glyphicon-remove-sign"></span> Remove
-          </button>
-          </tr>
-          {{/each}}
-        </tbody>
-      </table>
-    </div>
-</template>
-
-<template name="topTenTable">
-  <div class="container">
-    <!-- {{> reactiveTable collection=weapons fields=fields settings=settings}}
-    {{> reactiveTable collection=Weapons}}-->
-
-    <h2>Top Ten Songs Of The Week</h2>
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Song Title</th>
-          <th>Artist</th>
-          <th>Action</th>
-
-        </tr>
-        </thead>
-        <tbody>
-          {{#each songs}}
-          <tr>
-          <td>{{song_name}}</td>
-          <td>{{artist_name}}</td>
 
 
 
-          <button type="button" class="btn btn-danger btn-sm">
-          <span class="glyphicon glyphicon-remove-sign"></span> Remove
+
+
+
+          <button id="deleteSong" class="btn btn-danger btn-sm">
+          <span class="glyphicon glyphicon-remove-sign"></span> Delete
           </button>
           </tr>
           {{/each}}

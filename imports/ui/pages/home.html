@@ -1,7 +1,10 @@
 <template name="home">
-  {{> songsTable}}
+  {{> displayAlerts}}
   <br>
-  {{> TopTenTable}}
+  {{> songsTable}}
+
+
+
 </template>
 
 
@@ -14,46 +17,23 @@
     <table class="table">
         <thead>
           <tr>
+
+          <th>Rank</th>
           <th>Song name</th>
           <th>Artist</th>
+          <th>Release Date</th>
+          <th>Album</th>
+
         </tr>
       </thead>
       <tbody>
         {{#each songs}}
         <tr>
-          <td>{{song_name}}</td>
+          <td>{{song_rank}}</td>
+          <td><a href="{{youtube}}"> {{song_name}}</a></td>
           <td>{{artist_name}}</td>
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
-
-    </div>
-
-</template>
-
-
-
-
-
-<template name="TopTenTable">
-  <div class= "container">
-    <div class="row">
-      <h1>Top Ten Songs Of The Week</h1>
-    </div>
-    <table class="table">
-        <thead>
-          <tr>
-          <th>Song name</th>
-          <th>Artist</th>
-          <th>Download</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each songs}}
-        <tr>
-          <td>{{song_name}}</td>
-          <td>{{artist_name}}</td>
+          <td> {{release_date}}</td>
+          <td>{{album}}</td>
         </tr>
         {{/each}}
       </tbody>
