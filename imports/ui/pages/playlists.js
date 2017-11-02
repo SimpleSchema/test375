@@ -15,15 +15,15 @@ Template.addPlaylist.onCreated(function () {
     });
 });
 
-Template.addPlaylist.helpers({
+Template.playlists.helpers({
 
     playlists() {
       return Playlists.find()
   }
 });
 
-// Adds the song to the table...
-Template.addPlaylist.events({
+// button to submit
+Template.playlists.events({
 
 'submit .add-to-list': function(event){
   event.preventDefault();
@@ -45,7 +45,7 @@ Template.addPlaylist.events({
 });
 
 
-Template.addPlaylist.events({
+Template.playlists.events({
   'click #removeSong': function() {
     event.preventDefault();
 

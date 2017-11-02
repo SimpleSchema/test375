@@ -48,18 +48,17 @@
           </tr>
         </thead>
         <tbody>
-
+        {{#each songs}}
         <tr>
-          <td>{{song}}</td>
-          <td>{{artist}}</td>
-          <td>{{downloads}}</td>
+
+
 
 
       <button id="removeSong" class="btn btn-danger btn-sm">
       <span class="glyphicon glyphicon-trash"></span>
       </button>
       </tr>
-
+      {{/each}}
       </tbody>
         </table>
           </div>
