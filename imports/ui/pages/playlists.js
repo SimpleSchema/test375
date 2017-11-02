@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { Songs } from '../../collections/songs.js';
 import { Playlists } from '../../collections/playlists.js';
 import { check } from 'meteor/check';
+import { Mongo } from 'meteor/mongo';
 
 
 Template.addPlaylist.onCreated(function () {
@@ -21,21 +22,19 @@ Template.addPlaylist.helpers({
   }
 });
 
+// Adds the song to the table...
 Template.addPlaylist.events({
 
-'submit #add-to-list': function(event){
+'submit .add-to-list': function(event){
   event.preventDefault();
-
-
-    console.log("Ayyye it works");
-
 
     const target = event.target;
     const song = target.song.value;
     const artist= target.artist.value;
     const downloads= target.downloads.value;
 
-      //Meteor.call('addPlaylist', song, artist, downloads)
+// Calls the method
+      Meteor.call("addPlaylist", song, artist, downloads)
 
     // Clear form
 
@@ -43,4 +42,16 @@ Template.addPlaylist.events({
     target.artist.value= '';
     target.downloads.value= '';
   }
-})
+});
+
+
+Template.addPlaylist.events({
+  'click #removeSong': function() {
+    event.preventDefault();
+
+
+    var songId = this._id;
+
+    //Meteor.call('removeSongFromList', songId);
+  }
+});

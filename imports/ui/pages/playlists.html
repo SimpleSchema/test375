@@ -1,21 +1,6 @@
-<template name="playlists">
-  <div class="container">
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Song</th>
-          <th>Artist</th>
-          <th>Downloads</th>
-        </tr>
-      </thead>
-    </table>
-</div>
- <br>
+<template name="addPlaylist">
 
- {{> addPlaylist}}
-</template>
 
-  <template name="addPlaylist">
     <div class="container">
       <div class="col-xs-2">
         <div class="row">
@@ -24,17 +9,17 @@
 
             <div class="form-group">
               <label for="song">Song</label>
-                <input type="text" name="song" class="form-control" >
+                <input type="text" name="song" class="form-control-bottom" >
             </div>
 
             <div class="form-group">
               <label for="artist">Artist</label>
-                <input type="text" name="artist" class="form-control">
+                <input type="text" name="artist" class="form-control-bottom">
             </div>
 
             <div class="form-group">
               <label for="downloads">Downloads</label>
-                <input type="text" name="downloads" class="form-control">
+                <input type="text" name="downloads" class="form-control-bottom">
             </div>
 
             <br>
@@ -45,4 +30,44 @@
         </div>
       </div>
     </div>
+
+    <br>
+
+
+  </template>
+
+  <template name="playlists">
+    <div class="container">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Song</th>
+            <th>Artist</th>
+            <th>Downloads</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+          <td>{{song}}</td>
+          <td>{{artist}}</td>
+          <td>{{downloads}}</td>
+
+
+      <button id="removeSong" class="btn btn-danger btn-sm">
+      <span class="glyphicon glyphicon-trash"></span>
+      </button>
+      </tr>
+
+      </tbody>
+        </table>
+          </div>
+
+   <br>
+
+   {{> addPlaylist}}
+
+
+
   </template>

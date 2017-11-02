@@ -97,11 +97,13 @@ Meteor.methods({
 
 Meteor.methods({
 
-  addPlaylist (song, artists, downloads){
+  addPlaylist (song, artist, downloads){
 
     check (song, String);
     check (artist, String);
     check (downloads, String);
+
+    const playlist = Songs.findOne();
 
     Playlists.insert({
 
@@ -111,7 +113,18 @@ Meteor.methods({
 
     });
 
+  },
+
+    removeSongFromList (songId) {
+
+        check(songId, String);
+
+        Songs.remove({
+            _id: songId
+        });
+    },
 
 
-  }
+
+
 });
