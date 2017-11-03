@@ -5,6 +5,14 @@ import { Songs } from '../../collections/songs.js';
 import { Playlists } from '../../collections/playlists.js';
 import { check } from 'meteor/check';
 import { Mongo } from 'meteor/mongo';
+import { Accounts } from 'meteor/accounts-base';
+
+//Acounts config
+
+Accounts.ui.config({
+  passwordSignupFields:'USERNAME_ONLY'
+});
+
 
 
 Template.addPlaylist.onCreated(function () {
@@ -17,8 +25,12 @@ Template.addPlaylist.onCreated(function () {
 
 Template.playlists.helpers({
 
+
+
     playlists() {
-      return Playlists.find()
+      return Playlists.find();
+
+      var userId = this.userId
   }
 });
 

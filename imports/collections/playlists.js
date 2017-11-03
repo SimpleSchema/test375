@@ -26,7 +26,9 @@ Playlists.schema = new SimpleSchema({
     userId: {
       type: String,
       optional: true
-    }
+    },
+
+
 
 });
 
@@ -34,6 +36,8 @@ const playlist ={
   song: 'Stairway To Heaven',
   artist: 'Led Zeppelin',
   downloads: '',
+  userId: this.userId,
+
 
 
 

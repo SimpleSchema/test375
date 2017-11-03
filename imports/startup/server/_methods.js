@@ -105,12 +105,18 @@ Meteor.methods({
 
     const playlist = Songs.findOne();
 
+    // check if user is logged in
+    if (!this.userId){
+      throw new Meteor.error ('not-authorized');
+    }
+
     Playlists.insert({
 
       song: song,
       artist: artist,
       downloads: downloads,
-      userId: Meteor.userId()
+      userId: this.userId,
+
 
     });
 
@@ -119,6 +125,12 @@ Meteor.methods({
     removeSongFromList (songId) {
 
         check(songId, String);
+
+      if(playlist.owner !== this.userId){
+        throw new Meteor.Error('not-authorized');
+
+      }
+
 
         Playlists.remove({
             _id: songId
