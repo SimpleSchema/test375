@@ -21,6 +21,11 @@ Playlists.schema = new SimpleSchema({
     downloads: {
       type: String,
       optional: true
+    },
+
+    userId: {
+      type: String,
+      optional: true
     }
 
 });

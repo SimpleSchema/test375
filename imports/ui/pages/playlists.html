@@ -22,6 +22,8 @@
                 <input type="text" name="downloads" class="form-control-bottom">
             </div>
 
+
+
             <br>
 
             <button id="add-to-list" class="btn btn-success">Add</button>
@@ -39,6 +41,9 @@
   <template name="playlists">
     <div class="container">
       <table class="table table-bordered">
+
+      
+
         <thead>
           <tr>
             <th>Song</th>
@@ -48,17 +53,21 @@
           </tr>
         </thead>
         <tbody>
-        {{#each songs}}
+        {{#if currentUser}}
+        {{#each playlists}}
         <tr>
 
+    <td>{{song}}</td>
+    <td>{{artist}}</td>
+    <td>{{downloads}}</td>
 
 
-
-      <button id="removeSong" class="btn btn-danger btn-sm">
+      <button id="removeSong" class="btn btn-danger btn-med">
       <span class="glyphicon glyphicon-trash"></span>
       </button>
       </tr>
       {{/each}}
+      {{/if}}
       </tbody>
         </table>
           </div>

@@ -50,8 +50,9 @@ Template.playlists.events({
     event.preventDefault();
 
 
+
     var songId = this._id;
 
-    //Meteor.call('removeSongFromList', songId);
+    Meteor.call('removeSongFromList', songId);
   }
 });

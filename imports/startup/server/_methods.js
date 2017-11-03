@@ -109,7 +109,8 @@ Meteor.methods({
 
       song: song,
       artist: artist,
-      downloads: downloads
+      downloads: downloads,
+      userId: Meteor.userId()
 
     });
 
@@ -119,7 +120,7 @@ Meteor.methods({
 
         check(songId, String);
 
-        Songs.remove({
+        Playlists.remove({
             _id: songId
         });
     },
