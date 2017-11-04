@@ -7,6 +7,10 @@
           <form class ="add-to-list">
 
 
+
+
+
+
             <div class="form-group">
               <label for="song">Song</label>
                 <input type="text" name="song" class="form-control-bottom" >
@@ -34,7 +38,6 @@
     </div>
 
     <br>
-
 
   </template>
 
@@ -70,12 +73,24 @@
       {{/if}}
       </tbody>
         </table>
-          </div>
+      </div>
 
    <br>
 
-   {{> addPlaylist}}
+
+{{> addPlaylist}}
 
 
+  </template>
 
+  <template name="addSongToList">
+
+    <div id="addModal" class = "modal">
+    <div clas="modal-content">
+      <h3>Add Song</h3>
+      <form action="" class="add-song"></form>
+      <input type="text" name="text" placeholder="Add Song">
+
+    </div>
+    </div>
   </template>

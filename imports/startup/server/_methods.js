@@ -126,10 +126,7 @@ Meteor.methods({
 
         check(songId, String);
 
-      if(playlist.owner !== this.userId){
-        throw new Meteor.Error('not-authorized');
-
-      }
+  
 
 
         Playlists.remove({

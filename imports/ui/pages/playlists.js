@@ -27,10 +27,11 @@ Template.playlists.helpers({
 
 
 
-    playlists() {
-      return Playlists.find();
+playlists() {
+  var currentUserId = Meteor.userId();
+    return Playlists.find({userId: currentUserId});
 
-      var userId = this.userId
+
   }
 });
 
@@ -68,3 +69,16 @@ Template.playlists.events({
     Meteor.call('removeSongFromList', songId);
   }
 });
+
+
+Template.addSongToList.helpers({
+    playlists() {
+      return Playlists.find({});
+    }
+});
+
+Template.addSongToList.events({
+  'submit .add-song': function() {
+    event.preventDefault();
+  }
+})
