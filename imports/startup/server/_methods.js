@@ -126,7 +126,7 @@ Meteor.methods({
 
         check(songId, String);
 
-  
+
 
 
         Playlists.remove({
