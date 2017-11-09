@@ -22,11 +22,20 @@ Accounts.ui.config({
 
 Template.addPlaylist.onCreated(function () {
   this.autorun(() => {
-    Meteor.subscribe("PlaylistPub");
+    Meteor.subscribe("PlaylistPub", "SongsPub");
 
 
     });
 });
+
+Template.addSongToList.onCreated(function () {
+  this.autorun(() => {
+    Meteor.subscribe("PlaylistPub", "SongsPub");
+
+
+    });
+});
+
 
 Template.playlists.helpers({
 
@@ -98,8 +107,17 @@ Template.addSongToList.events({
   }
 });
 
-Template.addSongToList.onCreated( function() {
+Template.addSongToList.onRendered( function() {
       $("#ayyLmao").select2({
           placeholder: "Ayy select a Lmao!",
       });
     });
+
+
+Template.addSongToList.helpers({
+
+  returnSongs() {
+    return Songs.find({});
+  }
+
+});

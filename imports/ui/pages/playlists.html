@@ -101,12 +101,17 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Add Song</h4>
       </div>
+
       <div class="modal-body">
         <select id="ayyLmao" class="form-control">
-        <option value=""></option>
+        {{#each returnSongs}}
+        <option value="song">{{this.song}}</option>
+        {{/each}}
         <option value="ayylmfao">Ayy LMFAO!</option>
+
     </select>
       </div>
+
       <div class="modal-footer">
 
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
