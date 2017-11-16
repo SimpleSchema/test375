@@ -6,11 +6,6 @@
 
           <h4>Playlist Adjustment</h4>
 
-          <div class="form-group">
-            <label for= "rank">Rank</label>
-            <input type="text" name="rank" class="form-control">
-          </div>
-
 
           <div class="form-group">
             <label for="song">Song</label>
@@ -66,7 +61,7 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Rank</th>
+
           <th>Song Title</th>
           <th>Artist</th>
           <th>Release Date</th>
@@ -78,11 +73,13 @@
         <tbody>
           {{#each songs}}
           <tr>
-          <td>{{song_rank}}</td>
           <td><a href="{{youtube}}"> {{song_name}}</a></td>
           <td>{{artist_name}}</td>
           <td>{{release_date}}</td>
           <td>{{album}}</td>
+
+
+
 
 
 

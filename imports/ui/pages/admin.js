@@ -21,23 +21,25 @@ Template.admin.events({
     'submit .InsertSongForm': function(event){
       event.preventDefault();
 
+
       const target = event.target;
       const song = target.song.value;
       const artist = target.artist.value;
-      const rank = target.rank.value;
       const releaseDate = target.release_date.value;
       const album = target.album.value;
       const youtube = target.youtube.value;
 
-Meteor.call("addSong", song, artist, rank, releaseDate, album, youtube );
+
+
+Meteor.call("addSong", song, artist, releaseDate, album, youtube);
 
       //clear form
       target.song.value = '';
       target.artist.value = '';
-      target.rank.value = '';
       target.release_date.value = '';
       target.album.value = '';
       target.youtube.value = '';
+
 
    }
 });

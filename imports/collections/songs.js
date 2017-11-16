@@ -2,6 +2,7 @@ import { Mongo } from "meteor/mongo";
 import SimpleSchema from 'simpl-schema';
 
 
+
 export const Songs = new Mongo.Collection("Songs");
 
 Songs.schema = new SimpleSchema({
@@ -12,11 +13,6 @@ Songs.schema = new SimpleSchema({
   },
 
   artist_name: {
-    type: String,
-    optional: true
-  },
-
-  song_rank: {
     type: String,
     optional: true
   },
@@ -36,6 +32,13 @@ Songs.schema = new SimpleSchema({
     optional: true
   },
 
+  playlistAdds: {
+    type: String,
+    optional: true
+
+  },
+
+
 
 
 
@@ -44,11 +47,10 @@ Songs.schema = new SimpleSchema({
 const song = {
   song_name: 'Stairway To Heaven',
   artist_name: 'Led Zeppelin',
-  song_rank: '',
   release_date: '',
   album: '',
-  youtube: ''
-
+  youtube: '',
+  playlistAdds: '',
 
 };
 

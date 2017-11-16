@@ -11,6 +11,7 @@ import '../../ui/pages/playlists.html';
 
 
 
+
 FlowRouter.route('/', {
   action: function() {
     BlazeLayout.render("mainLayout", {content: "home"});
@@ -32,5 +33,11 @@ FlowRouter.route('/admin/alerts', {
 FlowRouter.route('/users/playlists', {
   action: function() {
     BlazeLayout.render("mainLayout", {content: "playlists"});
+  }
+});
+
+FlowRouter.route('/admin/users', {
+  action: function() {
+    BlazeLayout.render("mainLayout", {content: "manageUsers"});
   }
 });

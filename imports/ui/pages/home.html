@@ -12,7 +12,7 @@
 <template name="songsTable">
   <div class= "container">
     <div class="row">
-      <h1>SONGIFY</h1>
+      <h3>SONGIFY's Top 10 Downloaded Songs</h3>
     </div>
     <table class="table">
         <thead>
@@ -23,18 +23,26 @@
           <th>Artist</th>
           <th>Release Date</th>
           <th>Album</th>
+          <th>Playlist Adds</th>
 
         </tr>
       </thead>
       <tbody>
         {{#each songs}}
         <tr>
-          <td>{{song_rank}}</td>
+
+
+        <td>
+
+        </td>
           <td><a href="{{youtube}}"> {{song_name}}</a></td>
           <td>{{artist_name}}</td>
           <td> {{release_date}}</td>
           <td>{{album}}</td>
-        </tr>
+          <td>{{playlistAdds}}</td>
+
+      </tr>
+
         {{/each}}
       </tbody>
     </table>

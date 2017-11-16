@@ -1,13 +1,15 @@
 import './playlists.html';
 import { Template } from 'meteor/templating';
-import { Meteor } from 'meteor/meteor';
 import { $ } from 'meteor/jquery';
+import { Meteor } from 'meteor/meteor';
 import { Songs } from '../../collections/songs.js';
 import { Playlists } from '../../collections/playlists.js';
 import { check } from 'meteor/check';
 import { Mongo } from 'meteor/mongo';
 import { Accounts } from 'meteor/accounts-base';
-import select2 from 'select2';
+import 'select2-bootstrap-theme/dist/select2-bootstrap.css';
+import { ReactiveVar } from 'meteor/reactive-var'
+
 
 
 
@@ -22,7 +24,8 @@ Accounts.ui.config({
 
 Template.addPlaylist.onCreated(function () {
   this.autorun(() => {
-    Meteor.subscribe("PlaylistPub", "SongsPub");
+    Meteor.subscribe("PlaylistPub");
+      Meteor.subscribe("SongsPub");
 
 
     });
@@ -30,7 +33,8 @@ Template.addPlaylist.onCreated(function () {
 
 Template.addSongToList.onCreated(function () {
   this.autorun(() => {
-    Meteor.subscribe("PlaylistPub", "SongsPub");
+    Meteor.subscribe("PlaylistPub");
+    Meteor.subscribe("SongsPub");
 
 
     });
@@ -60,10 +64,10 @@ Template.playlists.events({
     const target = event.target;
     const song = target.song.value;
     const artist= target.artist.value;
-    const downloads= target.downloads.value;
+    const playlistAdds= target.playlist_adds.value;
 
 // Calls the method
-      Meteor.call("addPlaylist", song, artist, downloads)
+      Meteor.call("addPlaylist", songId)
 
     // Clear form
 
@@ -103,21 +107,52 @@ Template.addSongToList.events({
 Template.addSongToList.events({
   "change #select2": function(event, template){
     var selectValue = template.$("#select2").val();
-    console.log("AYYYYYYYYE");
+
   }
 });
 
+
+
+
 Template.addSongToList.onRendered( function() {
-      $("#ayyLmao").select2({
-          placeholder: "Ayy select a Lmao!",
-      });
+        $('.songsDropdown').select2({
+          placeholder: 'Select A Song',
+          theme: "bootstrap"
+
+
+
+
+        });
     });
 
 
 Template.addSongToList.helpers({
 
   returnSongs() {
+
     return Songs.find({});
   }
+
+});
+
+
+Template.addSongToList.events({
+
+  'submit .addSongToPlaylist': function(event){
+    event.preventDefault();
+
+      const target= event.target;
+      const songId = target.title.value;
+
+      // Calls the method
+
+      Meteor.call("addPlaylist", songId)
+
+
+
+
+  }
+
+
 
 });

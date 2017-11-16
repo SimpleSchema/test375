@@ -12,8 +12,8 @@
 
 
             <div class="form-group">
-              <label for="song">Song</label>
-                <input type="text" name="song" class="form-control-bottom" >
+              <label for="title">Song</label>
+                <input type="text" name="title" class="form-control-bottom" >
               </div>
 
 
@@ -50,10 +50,11 @@
 
         <thead>
           <tr>
-            <th>Song</th>
-            <th>Artist</th>
-            <th>Downloads</th>
-            <th>Remove</th>
+            <th class="text-center">Song</th>
+            <th class="text-center">Artist</th>
+            <th class="text-center">Album</th>
+            <th class="text-center">Year Released</th>
+            <th class="text-center">Remove</th>
           </tr>
         </thead>
         <tbody>
@@ -61,14 +62,16 @@
         {{#each playlists}}
         <tr>
 
-    <td>{{song}}</td>
+  <td><a href="{{youtube}}"> {{title}}</a></td>
     <td>{{artist}}</td>
-    <td>{{downloads}}</td>
-
-
-      <button id="removeSong" class="btn btn-danger btn-med">
+    <td>{{album}}</td>
+    <td>{{release_date}}</td>
+    <td>{{playlistAdds}}</td>
+    <td><button id="removeSong" class="btn btn-danger btn-sm center-block">
       <span class="glyphicon glyphicon-trash"></span>
-      </button>
+    </button>
+  </td>
+
       </tr>
       {{/each}}
       {{/if}}
@@ -96,6 +99,7 @@
   <div class="modal-dialog">
 
     <!-- Modal content-->
+
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -103,23 +107,30 @@
       </div>
 
       <div class="modal-body">
-        <select id="ayyLmao" class="form-control">
+        <form class="addSongToPlaylist">
+        <select class="songsDropdown" name="title" >
         {{#each returnSongs}}
-        <option value="song">{{this.song}}</option>
+        <option></option>
+        <option value="{{_id}}">{{song_name}}</option>
         {{/each}}
-        <option value="ayylmfao">Ayy LMFAO!</option>
 
     </select>
+      <br>
+      <button id="addSongToPlaylist" class="btn btn-success">Add To Playlist</button>
+      </form>
       </div>
 
+
+
       <div class="modal-footer">
+
 
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
     </div>
-
   </div>
 </div>
+
 
 
 
@@ -127,7 +138,3 @@
   </div>
 
   </template>
-
-<template name="dropdown">
-
-</template>

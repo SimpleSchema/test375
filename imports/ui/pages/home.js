@@ -19,7 +19,7 @@ Template.songsTable.onCreated(function () {
 
 Template.songsTable.helpers({
   songs: function() {
-    return Songs.find({});
+    return Songs.find({}, {sort: {playlistAdds: -1}});
   }
 });
 

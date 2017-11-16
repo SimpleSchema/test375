@@ -8,7 +8,7 @@ export const Playlists = new Mongo.Collection("Playlists");
 
 Playlists.schema = new SimpleSchema({
 
-      song: {
+      title: {
         type: String,
         optional: true
       },
@@ -18,7 +18,22 @@ Playlists.schema = new SimpleSchema({
       optional: true
     },
 
-    downloads: {
+    release_date: {
+      type: String,
+      optional: true
+    },
+
+    album: {
+      type: String,
+      optional: true
+    },
+
+    youtube: {
+      type: String,
+      optional: true
+    },
+
+    songId: {
       type: String,
       optional: true
     },
@@ -33,9 +48,8 @@ Playlists.schema = new SimpleSchema({
 });
 
 const playlist ={
-  song: 'Stairway To Heaven',
+  title: 'Stairway To Heaven',
   artist: 'Led Zeppelin',
-  downloads: '',
   userId: this.userId,
 
 
