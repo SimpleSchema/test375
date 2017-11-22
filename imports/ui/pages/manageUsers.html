@@ -1,70 +1,32 @@
 <template name="manageUsers">
-  {{> InsertRoles}}
-  <br>
-  {{> usersTable}}
-
+{{#if isInRole 'admin'}}
+{{> usersTable}}
+{{/if}}
 </template>
-
-
-
 
 <template name= "usersTable">
   <div class="container">
 
+{{> reactiveTable class="table table-bordered table-hover"  collection=Meteor.users fields=fields settings=settings }}
 
 
-    <br>
 
-    <h2>User Management</h2>
-
-    <table class="table">
-
-      <thead>
-        <tr>
-          <th>Users</th>
-          <th>Roles</th>
-          <th>Action</th>
-        </tr>
-          </thead>
-          <tbody>
-        {{#each users}}
-        <tr>
-          <td>{{_id}}</td>
-  <td>
-      {{_id}}
-     {{roles.[0]._id}}
-    <select id="selectRole">
-       <option value="" disabled selected>Select role</option>
-       <option selected="{{selected roles.[0]._id 'admin'}}" value="admin">Admin</option>
-       <option selected="{{selected roles.[0]._id 'user'}}" value="user">User</option>
-       <option selected="{{selected roles.[0]._id 'moderator'}}" value="moderator">Moderator</option>
-   </select>
-  </td>
-          <td>
-            <button type="button" class="btn btn-danger btn-sm removeUser">
-              <span class="glyphicon glyphicon-remove-sign"></span> Remove User
-            </button>
-          </td>
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
   </div>
 </template>
 
-<template name="InsertRoles">
-      <div class="container">
-    <div class="col-xs-4">
-      <div class="row">
-        <form class=InsertRoleForm>
-          <div class="form-group">
-            <label for="role">Role</label>
-            <input type="text" name="role" class="form-control" id="role">
-          </div>
-          <br>
-          <button type="submit" class="btn btn-success submitRole">Create role</button>
-        </form>
-      </div>
-    </div>
-  </div>
+<template name="roleDropdown">
+
+  <select id="selectRole">
+         <option value="" disabled selected>Select role</option>
+         <option selected="{{selected roles.[0]._id 'admin'}}" value="admin">Admin</option>
+         <option selected="{{selected roles.[0]._id 'user'}}" value="user">User</option>
+         <option selected="{{selected roles.[0]._id 'moderator'}}" value="moderator">Moderator</option>
+  </select>
+
+</template>
+
+<template name="removeUserButton">
+  <button type="button" class="btn btn-danger btn-sm removeUser">
+    <span class="glyphicon glyphicon-remove-sign"></span> Remove User
+</button>
 </template>

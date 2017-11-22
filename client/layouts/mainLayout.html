@@ -1,7 +1,10 @@
 <template name="mainLayout">
   {{> navigation}}
-  <br>
-  
+  {{> adminNav}}
+
+<div class="container">
+  {{> previousAlerts}}
+</div>
   <main>
     {{> Template.dynamic template=content}}
   </main>

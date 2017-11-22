@@ -16,9 +16,6 @@ import { ReactiveVar } from 'meteor/reactive-var'
 
 //Acounts config
 
-Accounts.ui.config({
-  passwordSignupFields:'USERNAME_ONLY'
-});
 
 
 
@@ -67,7 +64,11 @@ Template.playlists.events({
     const playlistAdds= target.playlist_adds.value;
 
 // Calls the method
-      Meteor.call("addPlaylist", songId)
+Meteor.call("addPlaylist", songId, (error, result) => {
+console.log("error" + error);
+console.log("result" + result);
+console.log("ayyy");
+});
 
     // Clear form
 
@@ -87,8 +88,17 @@ Template.playlists.events({
 
     var songId = this._id;
 
-    Meteor.call('removeSongFromList', songId);
-  }
+    Meteor.call('removeSongFromList', songId, function(err,result) {
+        if (!err) {
+            sAlert.success('Song Successfully Removed From Playlist!');
+    } else {
+            sAlert.error('Oops, something went wrong: ' + err.toString());
+        //or: sAlert.error(err);
+        }
+  });
+
+}
+
 });
 
 
@@ -146,7 +156,14 @@ Template.addSongToList.events({
 
       // Calls the method
 
-      Meteor.call("addPlaylist", songId)
+      Meteor.call("addPlaylist", songId, function(err,result) {
+          if (!err) {
+              sAlert.success('The song has been successfully added to your playlist!');
+      } else {
+              sAlert.error('Oops, something went wrong: ' + err.toString());
+          //or: sAlert.error(err);
+          }
+      });
 
 
 

@@ -29,9 +29,18 @@ Template.admin.events({
       const album = target.album.value;
       const youtube = target.youtube.value;
 
+    
 
 
-Meteor.call("addSong", song, artist, releaseDate, album, youtube);
+
+// Button that adds the song to the Songs Database
+Meteor.call("addSong", song, artist, releaseDate, album, youtube, function (err, result) {
+    if(!err) {
+      sAlert.success('Song Has Succesfully Been Added To The Database!');
+    } else {
+      sAlert.error('Song Already Exists In The Database!' + err.toString());
+    }
+});
 
       //clear form
       target.song.value = '';
@@ -51,7 +60,13 @@ Template.admin.events({
 
     var songId = this._id;
 
-    Meteor.call('removeSong', songId);
+    Meteor.call('removeSong', songId, function(err, result) {
+      if (!err) {
+        sAlert.success('Song Has Successfully Been Removed From The Database!');
+      } else {
+        sAlert.error('Oops!, Something went wrong' + err.toString());
+      }
+    });
   }
 });
 

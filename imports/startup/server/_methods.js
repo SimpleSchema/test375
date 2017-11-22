@@ -5,6 +5,7 @@ import '/imports/startup/both';
 import { check } from 'meteor/check';
 import { Alerts } from '../../collections/alerts.js';
 import { Playlists } from '../../collections/playlists.js';
+import { Roles } from 'meteor/alanning:roles';
 
 
 
@@ -32,6 +33,19 @@ Meteor.methods({
             throw new Meteor.error('Duplicate',
                 'This song already exists in the database.');
         }
+
+
+        var loggedInUser = Meteor.user();
+        var userId = this._id;
+
+        if (!loggedInUser ||
+          !Roles.userIsInRole(loggedInUser,
+          ['admin']))
+
+          {
+            throw new Meteor.Error(403, "Access Denied")
+
+          }
 
         Songs.insert({
 
@@ -68,8 +82,18 @@ Meteor.methods({
         check(title, String);
         check(message, String);
 
+        var loggedInUser = Meteor.user();
+        var userId = this._id;
 
 
+        if (!loggedInUser ||
+          !Roles.userIsInRole(loggedInUser,
+          ['admin']))
+
+          {
+            throw new Meteor.Error(403, "Access Denied")
+
+          }
 
         Alerts.insert({
 
@@ -83,6 +107,7 @@ Meteor.methods({
     removeAlert(alertId) {
 
         check(alertId, String);
+
 
         Alerts.remove({
             _id: alertId
@@ -120,6 +145,20 @@ Meteor.methods({
       throw new Meteor.error ('song already exists in playlist');
     }
 
+// Check to see if the logged in and the user is in the 'admin' role
+    var loggedInUser = Meteor.user();
+    var userId = this._id;
+
+
+    if (!loggedInUser ||
+      !Roles.userIsInRole(loggedInUser,
+      ['admin']))
+
+      {
+        throw new Meteor.Error("Access Denied")
+
+      }
+
     // Add the song to the Playlists collection for the user
     Playlists.insert({
       title: doc.song_name,
@@ -145,6 +184,20 @@ Meteor.methods({
         // Find and return the songs document in the Playlists collection
         var playlistDoc = Playlists.findOne({_id: songId});
 
+        // Checking to see if the loggedInUser is in the admin role
+        var loggedInUser = Meteor.user();
+        var userId = this._id;
+
+
+        if (!loggedInUser ||
+          !Roles.userIsInRole(loggedInUser,
+          ['admin']))
+
+          {
+            throw new Meteor.Error(403, "Access Denied")
+
+          }
+
         // Remove the song from the Playlists colleciton
         Playlists.remove({
             _id: songId
@@ -160,31 +213,35 @@ Meteor.methods({
 
 
 
-
-
-
 Meteor.methods({
-  insertRole: function (role) {
-    check(role, String);
 
-    var loggedInUser = Meteor.user();
-
-    if (!loggedInUser) {
-      throw new Meteor.Error('access-denied', "Access denied");
-    };
-  Roles.createRole(role);
-  }
-});
-
-Meteor.methods({
   updateRoles: function (targetUserId, roles) {
     var loggedInUser = Meteor.user();
+    var userId = this._id;
 
-    if (!loggedInUser) {
-      throw new Meteor.Error(403, "Access denied")
-    };
-    console.log("targetUserId: " + targetUserId);
-    console.log("roles: " + roles);
-    //  Roles.setUserRoles(targetUserId, roles)
-  }
+
+    if (!loggedInUser ||
+      !Roles.userIsInRole(loggedInUser,
+      ['admin']))
+
+      {
+        throw new Meteor.Error(403, "Access Denied")
+
+      }
+        Roles.setUserRoles(targetUserId, roles);
+
+
+},
+
+  removeUser(userId) {
+
+      check(userId, String);
+
+      Meteor.users.remove({
+          _id: userId
+      });
+  },
+
+
+
 });

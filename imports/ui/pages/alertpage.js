@@ -8,14 +8,18 @@ import { Alerts } from '../../collections/alerts.js';
 Template.alerts.onCreated(function () {
   this.autorun(() => {
 
-    Meteor.subscribe("SongsPub", "AlertsPub", "PlaylistPub");
+    Meteor.subscribe("SongsPub");
+    Meteor.subscribe("AlertsPub");
+    Meteor.subscribe("PlaylistPub");
+
+
     });
 });
 
 Template.alerts.helpers({
 
     alerts: function () {
-      return Alerts.find()
+      return Alerts.find({});
   }
 });
 
@@ -29,7 +33,13 @@ Template.alerts.events({
     const title = target.title.value;
     const message = target.message.value;
 
-    Meteor.call("addAlert", type, title, message)
+    Meteor.call("addAlert", type, title, message, function(err, result) {
+      if (!err) {
+        sAlert.success('Alert Added!');
+      } else {
+        sAlert.error ('Oops!, Something went wrong' + err.ToString());
+      }
+    });
 
     target.type.value = '';
     target.title.value = '';

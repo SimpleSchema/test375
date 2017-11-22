@@ -11,54 +11,69 @@ Template.usersTable.onCreated(function () {
 
 Template.usersTable.helpers({
     users: function () {
-        return Meteor.users.find();
-    },
+        return Meteor.users.find({});
+
+  },
 });
 
 
-Template.usersTable.events({
+Template.usersTable.helpers({
+    settings: function () {
+        return {
+            collection: Meteor.users,
+            rowsPerPage: 10,
+            showFilter: true,
+          fields: [
+            {key: '_id', label: 'User ID'},
+            {key: 'username', label: 'Username'},
+            {key: 'roles', label: 'Role', tmpl: Template.roleDropdown },
+            {key: 'action', label: 'Action', tmpl: Template.removeUserButton}
+
+        ] };
+    }
+});
+
+
+Template.removeUserButton.events({
   'click .removeUser': function() {
     event.preventDefault();
 
     var userId = this._id;
+    var loggedInUser = Meteor.user();
+
+    if (!loggedInUser ||
+        !Roles.userIsInRole(loggedInUser,
+        ['admin'])) {
+          throw new Meteor.Error(403, "Access Denied")
+        }
 
     Meteor.call('removeUser', userId);
 
   }
 });
 
-
-
-
-Template.InsertRoles.events({
-  'submit .InsertRoleForm': function(event) {
-    event.preventDefault();
-
-    // Get value from form element
-    const target = event.target;
-    const role = target.role.value;
-
-    // Call method
-    Meteor.call('insertRole', role);
-
-    // Clear form
-    target.role.value = '';
-  },
-});
-
-Template.usersTable.events({
+Template.roleDropdown.events({
   'change #selectRole': function(event, template){
     var selectedRole = template.$("#selectRole").val();
-
+    var loggedInUser = Meteor.user();
     var userId = this._id;
 
+    if (!loggedInUser ||
+        !Roles.userIsInRole(loggedInUser,
+        ['admin'])) {
+          throw new Meteor.Error(403, "Access Denied")
+        }
+
+
+
     Meteor.call('updateRoles', userId, selectedRole);
-    console.log(selectedRole);
+
   }
 });
 
-Template.usersTable.helpers({
+Template.roleDropdown.helpers({
   selected: function(v1, v2) {
     return (v1 === v2);
+  
   }
 });

@@ -23,10 +23,13 @@ kadira:flow-router
 kadira:blaze-layout
 check@1.2.5
 accounts-password@1.5.0
-accounts-ui
 accounts-google
 accounts-facebook
 google-config-ui
 facebook-config-ui
 natestrauser:select2
 alanning:roles
+aslagle:reactive-table
+juliancwirko:s-alert
+juliancwirko:s-alert-slide
+accounts-ui
